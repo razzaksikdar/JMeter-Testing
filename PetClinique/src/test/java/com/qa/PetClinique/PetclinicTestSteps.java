@@ -17,6 +17,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -210,6 +211,53 @@ public class PetclinicTestSteps {
     @When("^I add new records$")
     public void i_add_new_records()  {
         // Code to turns the phrase above into concrete actions
+    	
+    	
+    	RestAssured.baseURI = "http://10.0.10.10:9966/petclinic/api/owners";
+ 	    request = RestAssured.given();
+ 	    
+ 	    request.header("Content-Type","application/json");
+
+ 		
+ 		JSONObject owner = new JSONObject();
+ 		JSONArray pets = new JSONArray();
+ 		
+ 		JSONObject pet = new JSONObject();
+ 		JSONObject type = new JSONObject();
+ 		JSONArray visits = new JSONArray();
+ 		JSONObject visit = new JSONObject();
+ 		
+ 		visit.put("date", "2014/12/16");
+ 		visit.put("description", "april");
+ 		visit.put("id", 31);
+ 		visit.put("pet", pet);
+ 		
+ 		visits.put(visit);
+ 		
+ 		type.put("id", 0);
+ 		type.put("name","maxi");
+ 		pet.put("type", type);
+ 		pet.put("birthDate", "12/12/12");
+ 		pet.put("id", 17);
+ 		pet.put("name", "master");
+ 		pet.put("owner", owner);
+ 		pet.put("visits", visits);
+ 		
+ 		pets.put(pet);
+ 		
+ 		owner.put("address","first line");
+ 		owner.put("city","Dhaka");
+ 		owner.put("firstName", "Mikel");
+ 		owner.put("id", 96);
+ 		owner.put("lastName", "Jekson");
+ 		owner.put("pets", pets);
+ 		owner.put("telephone", "166658");
+ 		
+ 		request.body(owner.toString());
+ 		response = request.post("http://10.0.10.10:9966/petclinic/api/owners");
+ 		
+ 		
+    	
         
     }
 

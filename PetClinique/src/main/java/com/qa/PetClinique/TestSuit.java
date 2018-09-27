@@ -13,12 +13,6 @@ import io.restassured.specification.RequestSpecification;
 
 public class TestSuit {
 	
-//	@FindBy(xpath = "")
-//	private WebElement ;
-//	
-//	@FindBy(id="")
-//	private WebElement ;
-//	
 	
 	private Response response;
 	private ValidatableResponse json;
@@ -26,7 +20,7 @@ public class TestSuit {
 	
 	@Test
 	public void getObjectByName() {
-
+		
       //Vet User Check [GET TEST]
       
     	request=given().contentType(ContentType.JSON);
@@ -44,12 +38,12 @@ public class TestSuit {
 		
 	for ( String s : fef) {
 		
-		System.out.println(s);
+//		System.out.println(s);
 		
 	}
 		
 //		String s=response.body().asString();
-//		int i=s.indexOf("{");
+//		int i=s.indexOf("[");
 //		s = s.substring(i);
 //	
 //		JSONObject obj=new JSONObject(s.trim());
@@ -91,7 +85,7 @@ public class TestSuit {
 	public void DeleteTest() {
 		
 		Response response = given().contentType(ContentType.JSON).when()
-				.delete("http://10.0.10.10:9966/petclinic/api/owners/1");
+				.delete("http://10.0.10.10:9966/petclinic/api/owners/2");
 		System.out.println("Delete status code: "+response.getStatusCode());
 		System.out.println("Delete status code as string: "+response.asString());
 	}
@@ -101,19 +95,19 @@ public class TestSuit {
 		request=given().contentType(ContentType.JSON);
 		request.header("Content-Type", "application/json");
 		response= request.when().get("http://10.0.10.10:9966/petclinic/api/owners");
-		
-		
-		JSONObject obj=new JSONObject(response.body().asString());
-		JSONArray results = obj.getJSONArray(response.body().asString());
+		json=response.then().statusCode(200);
+				
+		JSONObject obj=new JSONObject("{" + "myArray:" + response.body().asString() +"}");
+		JSONArray results = obj.getJSONArray("myArray");
 		JSONObject objx=null;
 		
 		for(int i= 0; i<results.length(); i++) {
-			
 			objx=results.getJSONObject(i);
+			System.out.println("delete"+objx.getInt("id"));
 			int x=objx.getInt("id");
-			if(x==31) {
+			if(x==10) {
 				Response response = given().contentType(ContentType.JSON).when()
-						.delete("http://10.0.10.10:9966/petclinic/api/owners"+x);
+						.delete("http://10.0.10.10:9966/petclinic/api/owners/"+x);
 			}
 			
 		}
