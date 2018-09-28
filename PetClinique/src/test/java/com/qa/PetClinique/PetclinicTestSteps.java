@@ -209,52 +209,53 @@ public class PetclinicTestSteps {
     }
 
     @When("^I add new records$")
-    public void i_add_new_records()  {
+    public void i_add_new_records() throws Throwable {
         // Code to turns the phrase above into concrete actions
     	
     	
-    	RestAssured.baseURI = "http://10.0.10.10:9966/petclinic/api/owners";
- 	    request = RestAssured.given();
- 	    
- 	    request.header("Content-Type","application/json");
-
- 		
- 		JSONObject owner = new JSONObject();
- 		JSONArray pets = new JSONArray();
- 		
- 		JSONObject pet = new JSONObject();
- 		JSONObject type = new JSONObject();
- 		JSONArray visits = new JSONArray();
- 		JSONObject visit = new JSONObject();
- 		
- 		visit.put("date", "2014/12/16");
- 		visit.put("description", "april");
- 		visit.put("id", 31);
- 		visit.put("pet", pet);
- 		
- 		visits.put(visit);
- 		
- 		type.put("id", 0);
- 		type.put("name","maxi");
- 		pet.put("type", type);
- 		pet.put("birthDate", "12/12/12");
- 		pet.put("id", 17);
- 		pet.put("name", "master");
- 		pet.put("owner", owner);
- 		pet.put("visits", visits);
- 		
- 		pets.put(pet);
- 		
- 		owner.put("address","first line");
- 		owner.put("city","Dhaka");
- 		owner.put("firstName", "Mikel");
- 		owner.put("id", 96);
- 		owner.put("lastName", "Jekson");
- 		owner.put("pets", pets);
- 		owner.put("telephone", "166658");
- 		
- 		request.body(owner.toString());
- 		response = request.post("http://10.0.10.10:9966/petclinic/api/owners");
+//    	RestAssured.baseURI = "http://10.0.10.10:9966/petclinic/api/owners";
+// 	    request = RestAssured.given();
+// 	    
+// 	    request.header("Content-Type","application/json");
+// 	    request.header("Accept", "application/json;charset=UTF-8");
+//
+// 		
+// 		JSONObject owner = new JSONObject();
+// 		JSONArray pets = new JSONArray();
+// 		
+// 		JSONObject pet = new JSONObject();
+// 		JSONObject type = new JSONObject();
+// 		JSONArray visits = new JSONArray();
+// 		JSONObject visit = new JSONObject();
+// 		
+// 		visit.put("date", "yyyy/MM/dd");
+// 		visit.put("description", "April");
+// 		visit.put("id", 0);
+// 		visit.put("pet", pet);
+// 		
+// 		visits.put(visit);
+// 		
+// 		type.put("id", 0);
+// 		type.put("name","maxi");
+// 		pet.put("type", type);
+// 		pet.put("birthDate", "2018-09-27T08:50:25.563Z");
+// 		pet.put("id", 17);
+// 		pet.put("name", "master");
+// 		pet.put("owner", owner);
+// 		pet.put("visits", visits);
+// 		
+// 		pets.put(pet);
+// 		
+// 		owner.put("address","first line");
+// 		owner.put("city","Dhaka");
+// 		owner.put("firstName", "Mikel");
+// 		owner.put("id", 0);
+// 		owner.put("lastName", "Jekson");
+// 		owner.put("pets", pets);
+// 		owner.put("telephone", "166658");
+// 		
+// 		request.body(owner.toString());
+// 		response = request.post("http://10.0.10.10:9966/petclinic/api/owners/11");
  		
  		
     	

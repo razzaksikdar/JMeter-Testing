@@ -66,19 +66,51 @@ public class TestSuit {
 	
 	@Test
 	public void PostTest() {
-		JSONObject obj =new JSONObject();
-		request=given().contentType(ContentType.JSON);
-		request.header("Content-Type", "application/json");
-		obj.put("firstName", "Miki");
-		obj.put("lastName", "mouse");
-		obj.put("address", " first lane");
-		obj.put("city", "Manchester");
-		obj.put("telephone", "123454");
-		request.body(obj.toString());
-		response=request.post("http://10.0.10.10:9966/petclinic/api/owners/11");
-		System.out.println("Post test1 response code: "+response.getStatusCode());
 
 		
+		request=given().contentType(ContentType.JSON);
+		request.header("Content-Type", "application/json");
+		
+		
+		JSONObject owner = new JSONObject();
+ 		JSONArray pets = new JSONArray();
+ 		
+ 		JSONObject pet = new JSONObject();
+ 		JSONObject type = new JSONObject();
+ 		JSONArray visits = new JSONArray();
+// 		JSONObject visit = new JSONObject();
+// 		
+// 		visit.put("date", "yyyy/MM/dd");
+// 		visit.put("description", "April");
+// 		visit.put("id", 0);
+// 		visit.put("pet", pet);
+// 		
+// 		visits.put(visit);
+// 		
+// 		type.put("id", 0);
+// 		type.put("name","maxi");
+ 		pet.put("type", type);
+ 		pet.put("birthDate", "2018-09-27T08:50:25.563Z");
+ 		//pet.put("id", 17);
+ 		pet.put("name", "master");
+ 		pet.put("owner", 7);
+ 		pet.put("visits", visits);
+ 		
+ 		pets.put(pet);
+// 		visit.put("pet", pet);
+ 		
+ 		
+ 		owner.put("address","first line");
+ 		owner.put("city","Dhaka");
+ 		owner.put("firstName", "lool");
+ 		//owner.put("id", 0);
+ 		owner.put("lastName", "Jekson");
+ 		owner.put("pets", pets);
+ 		owner.put("telephone", "166658");
+ 		
+ 		request.body(owner.toString());
+ 		response = request.post("http://10.0.10.10:9966/petclinic/api/owners");
+		System.out.println("Anis addition: "+response.getStatusCode());		
 	}
 	
 	@Test
